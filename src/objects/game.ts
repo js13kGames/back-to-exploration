@@ -7,7 +7,10 @@ export class Game {
   private curLevel: Level;
 
   constructor(private readonly canvas: HTMLCanvasElement) {
+    let block = false;
     document.addEventListener('keydown', e => {
+      if (block) return;
+      block = true;
       if (e.code === 'Space') {
         this.curLevel.control('space');
       } else if (e.code === 'ArrowLeft') {
@@ -15,6 +18,9 @@ export class Game {
       } else if (e.code === 'ArrowRight') {
         this.curLevel.control('right')
       }
+    });
+    document.addEventListener('keyup', () => {
+      block = false;
     });
     canvas.addEventListener('levelup', (event: CustomEvent) => {
       this.start(event.detail);
@@ -26,13 +32,18 @@ export class Game {
       case 1: 
         this.curLevel = new Level1(this.canvas);
       break;
-      case 2: 
+      case 2:
         this.curLevel = new Level2(this.canvas);
       break;
       case 3: 
         this.curLevel = new Level3(this.canvas);
       break;
     }
+    this.loop();    
+  }
+
+  loop() {
     this.curLevel.draw();
+    window.requestAnimationFrame(() => this.loop());
   }
 }

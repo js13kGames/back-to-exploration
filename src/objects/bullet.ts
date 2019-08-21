@@ -5,12 +5,13 @@ export class Bullet {
   public vy = 0;
 
   constructor(public x: number, public y: number, public readonly radius = 5) {
-    this.color = 'red';
+    this.color = '#a47655';
   }
 
   draw(ctx: CanvasRenderingContext2D) {
     if (this.flying) {
       this.x -= this.vx;
+      this.x = (this.x > 0 && this.x) || 800;
     }
     ctx.fillStyle = this.color;
     ctx.beginPath();
