@@ -18,9 +18,9 @@ export class BaseLevel implements Level {
 
   control(identifier: string) {
     if (identifier === 'space') {
-      if (!this.tank.bullet || !this.tank.bullet.isInCanvas(this.canvas.width, this.canvas.height)) {
-        this.tank.shoot();
-      }
+      // if (!this.tank.bullet || !this.tank.bullet.isInCanvas(this.canvas.width, this.canvas.height)) {
+        // this.tank.shoot();
+      // }
     } else if (identifier === 'left') {
       this.tank.move('left');
     } else if (identifier === 'right') {
