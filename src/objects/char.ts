@@ -1,9 +1,9 @@
 import { XYPosition } from "./xyposition";
-import { Shit } from "./shit";
+import { Bar } from "./bar";
 
 export class Char {
   private img: HTMLImageElement;
-  protected shit: Shit;
+  protected bar: Bar;
   private pos: XYPosition;
   private basePos: XYPosition;
   private vx = 0;
@@ -25,14 +25,14 @@ export class Char {
     this.img.src = this.base64 + this.imgs[1];
     this.pos = {x: 690, y: 400};
     this.basePos = Object.assign({}, this.pos);
-    this.shit = new Shit(ctx);
+    this.bar = new Bar(ctx);
   }
 
   move(direction: string) {
     if (direction === 'left') {
       this.moving = 1;
       this.vx = 6;
-      this.shit.move(6);
+      this.bar.move(6);
     }
     this.cur = this.cur < 5 ? this.cur+1 : 1;
     this.img.src = this.base64 + this.imgs[this.cur];
@@ -42,6 +42,6 @@ export class Char {
   draw() {
     this.pos.x -= (this.moving-- > 0) && this.vx;
     this.ctx.drawImage(this.img, this.pos.x, this.pos.y);
-    this.shit.draw();
+    this.bar.draw();
   }
 }

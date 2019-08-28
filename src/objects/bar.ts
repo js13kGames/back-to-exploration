@@ -1,6 +1,6 @@
 import { XYPosition } from "./xyposition";
 
-export class Shit {
+export class Bar {
   private readonly color: string = '#a47655';
   private animationStep: number = 100;
   private turn: boolean = false;
