@@ -1,11 +1,12 @@
 import { BaseLevel } from "./baselevel";
-import { Tree } from "../objects/tree";
+import { Target } from "../objects/target";
 
 export class Level1 extends BaseLevel {
-  constructor(canvas: HTMLCanvasElement) {
+  constructor(canvas: HTMLCanvasElement, level: number) {
     super(canvas);
-    for (let x = 0; x < 3; x++) {
-      this.tree.push(new Tree(this.ctx, {x: 260 - (80 * x), y: 348}));
+    console.log(level);
+    for (let x = 0; x < 1; x++) {
+      this.target.push(new Target(this.ctx, {x: 260 - (80 * x), y: 348}));
     }
   }
 
@@ -13,10 +14,10 @@ export class Level1 extends BaseLevel {
     this.drawBackground('#6097fe');
     this.drawMessageLoop();
 
-    this.tank.draw();
+    this.char.draw();
 
-    for (const tree of this.tree) {
-      tree.draw();
+    for (const target of this.target) {
+      target.draw();
     }
   }
 }

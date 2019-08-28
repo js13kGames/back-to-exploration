@@ -5,7 +5,7 @@ export class Shit {
   private animationStep: number = 100;
   private turn: boolean = false;
 
-  constructor(private ctx: CanvasRenderingContext2D, private pos: XYPosition = {x: 700, y: 314}) {
+  constructor(private ctx: CanvasRenderingContext2D, private pos: XYPosition = {x: 678, y: 314}) {
   }
 
   move(amount: number) {

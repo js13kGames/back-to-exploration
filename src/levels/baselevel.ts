@@ -1,28 +1,25 @@
-import { Tank } from "../objects/tank";
-import { Tree } from "../objects/tree";
+import { Char } from "../objects/char";
+import { Target } from "../objects/target";
 import { Level } from "./level";
 import { Phrases } from "../objects/phrases";
 
 export class BaseLevel implements Level {
   protected readonly ctx: CanvasRenderingContext2D;
   protected readonly textFont = '18px arial';
-  protected tank: Tank;
-  protected tree: Tree[] = [];
+  protected char: Char;
+  protected target: Target[] = [];
   private drawText: number = 0;
   private phrase: string;
 
   constructor(public canvas: HTMLCanvasElement) {
     this.ctx = this.canvas.getContext('2d');
-    this.tank = new Tank(this.ctx);
+    this.char = new Char(this.ctx);
   }
 
   control(identifier: string) {
     if (identifier === 'space') {
-      // if (!this.tank.bullet || !this.tank.bullet.isInCanvas(this.canvas.width, this.canvas.height)) {
-        // this.tank.shoot();
-      // }
     } else if (identifier === 'left') {
-      this.tank.move('left');
+      this.char.move('left');
     } else if (identifier === 'right') {
       this.phrase = Phrases.getRandom();
       this.drawText = 300;

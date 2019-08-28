@@ -1,7 +1,5 @@
 import { Level } from '../levels/level';
 import { Level1 } from '../levels/level1';
-import { Level2 } from '../levels/level2';
-import { Level3 } from '../levels/level3';
 
 export class Game {
   private curLevel: Level;
@@ -30,13 +28,13 @@ export class Game {
   start(level: number) {
     switch (level) {
       case 1: 
-        this.curLevel = new Level1(this.canvas);
+        this.curLevel = new Level1(this.canvas, 1);
       break;
       case 2:
-        this.curLevel = new Level2(this.canvas);
+        this.curLevel = new Level1(this.canvas, 2);
       break;
       case 3: 
-        this.curLevel = new Level3(this.canvas);
+        this.curLevel = new Level1(this.canvas, 3);
       break;
     }
     this.loop();    
