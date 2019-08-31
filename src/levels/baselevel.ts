@@ -7,7 +7,7 @@ export class BaseLevel implements Level {
   protected readonly ctx: CanvasRenderingContext2D;
   protected readonly textFont = '18px arial';
   protected char: Char;
-  protected target: Target[] = [];
+  protected target: Target;
   private drawText: number = 0;
   private phrase: string;
 
@@ -18,6 +18,7 @@ export class BaseLevel implements Level {
 
   control(identifier: string) {
     if (identifier === 'space') {
+      this.target.setLevel(5);
     } else if (identifier === 'left') {
       this.char.move('left');
     } else if (identifier === 'right') {
@@ -47,6 +48,16 @@ export class BaseLevel implements Level {
     this.ctx.fillStyle = fillStyle;
     this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.fill();
+    this.ctx.fillStyle = '#ebcb68';
+    this.ctx.fillRect(0, 440, this.canvas.width, this.canvas.height);
+    this.ctx.fillStyle = '#e9d8af';
+    this.ctx.fillRect(0, 450, this.canvas.width, this.canvas.height);
+    this.ctx.fillStyle = '#c9b08e';
+    this.ctx.fillRect(0, 480, this.canvas.width, this.canvas.height);
+    this.ctx.fillStyle = '#e9d8af';
+    this.ctx.fillRect(0, 510, this.canvas.width, this.canvas.height);
+    this.ctx.fillStyle = '#ebcb68';
+    this.ctx.fillRect(0, 550, this.canvas.width, this.canvas.height);
   }
 
   protected nextLevel(level: number) {

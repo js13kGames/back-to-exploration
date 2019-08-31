@@ -23,7 +23,7 @@ export class Char {
   constructor(public ctx: CanvasRenderingContext2D) {
     this.img = new Image();
     this.img.src = this.base64 + this.imgs[1];
-    this.pos = {x: 690, y: 400};
+    this.pos = {x: 660, y: 390};
     this.basePos = Object.assign({}, this.pos);
     this.bar = new Bar(ctx);
   }

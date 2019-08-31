@@ -5,7 +5,7 @@ export class Bar {
   private animationStep: number = 100;
   private turn: boolean = false;
 
-  constructor(private ctx: CanvasRenderingContext2D, private pos: XYPosition = {x: 678, y: 314}) {
+  constructor(private ctx: CanvasRenderingContext2D, private pos: XYPosition = {x: 650, y: 294}) {
   }
 
   move(amount: number) {

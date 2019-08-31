@@ -42,6 +42,8 @@ export class Game {
 
   loop() {
     this.curLevel.draw();
-    window.requestAnimationFrame(() => this.loop());
+    setTimeout(() => {
+      window.requestAnimationFrame(() => this.loop());
+    }, 20);
   }
 }

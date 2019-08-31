@@ -6,7 +6,7 @@ export class Level1 extends BaseLevel {
     super(canvas);
     console.log(level);
     for (let x = 0; x < 1; x++) {
-      this.target.push(new Target(this.ctx, {x: 260 - (80 * x), y: 348}));
+      this.target = new Target(this.ctx, {x: 190, y: 368});
     }
   }
 
@@ -15,9 +15,6 @@ export class Level1 extends BaseLevel {
     this.drawMessageLoop();
 
     this.char.draw();
-
-    for (const target of this.target) {
-      target.draw();
-    }
+    this.target.draw();
   }
 }
