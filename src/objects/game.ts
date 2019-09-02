@@ -1,8 +1,8 @@
-import { Level } from '../levels/level';
-import { Level1 } from '../levels/level1';
+import { Level } from '../levels/Level';
 
 export class Game {
   private curLevel: Level;
+  private ticker: number = 3;
 
   constructor(private readonly canvas: HTMLCanvasElement) {
     let block = false;
@@ -28,22 +28,42 @@ export class Game {
   start(level: number) {
     switch (level) {
       case 1: 
-        this.curLevel = new Level1(this.canvas, 1);
+        this.curLevel = new Level(this.canvas, 1);
+        this.loop();
       break;
       case 2:
-        this.curLevel = new Level1(this.canvas, 2);
+        this.curLevel.moveCamera(2)
+          .then(() => {
+            this.curLevel = new Level(this.canvas, 2);
+          });
       break;
-      case 3: 
-        this.curLevel = new Level1(this.canvas, 3);
+      case 3:
+        this.curLevel.moveCamera(3)
+          .then(() => {
+            this.curLevel = new Level(this.canvas, 3);
+          });
       break;
-    }
-    this.loop();    
+      case 4:
+        this.curLevel.moveCamera(4)
+          .then(() => {
+            this.curLevel = new Level(this.canvas, 4);
+          });
+      break;
+      case 5:
+        this.curLevel.moveCamera(5)
+          .then(() => {
+            this.curLevel = new Level(this.canvas, 5);
+          });
+      break;
+    }  
   }
 
   loop() {
-    this.curLevel.draw();
-    setTimeout(() => {
-      window.requestAnimationFrame(() => this.loop());
-    }, 20);
+    if (this.ticker > 4) {
+      this.curLevel.draw();
+      this.ticker = 0;
+    }
+    window.requestAnimationFrame(() => this.loop());
+    this.ticker++;
   }
 }

@@ -3,8 +3,8 @@ import { Bar } from "./bar";
 
 export class Char {
   private img: HTMLImageElement;
-  protected bar: Bar;
-  private pos: XYPosition;
+  public bar: Bar;
+  public pos: XYPosition;
   private basePos: XYPosition;
   private vx = 0;
   private moving = 0;
@@ -26,6 +26,11 @@ export class Char {
     this.pos = {x: 660, y: 390};
     this.basePos = Object.assign({}, this.pos);
     this.bar = new Bar(ctx);
+  }
+
+  setLevel(level: number) {
+    this.img.src = this.base64 + this.imgs[level];
+    this.pos.y = this.basePos.y + this.offset[level];
   }
 
   move(direction: string) {
