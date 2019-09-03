@@ -35,7 +35,7 @@ export class Level {
   action() {
     if (!this.interval) {
       this.char.bar.stop();
-      this.interval = setInterval(() => {
+      this.interval = window.setInterval(() => {
         this.char.move('left');
         if (this.char.pos.x < this.target.pos.x + 110) {
           clearInterval(this.interval);

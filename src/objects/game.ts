@@ -2,7 +2,7 @@ import { Level } from '../levels/Level';
 
 export class Game {
   private curLevel: Level;
-  private ticker: number = 3;
+  private ticker: number = 5;
 
   constructor(private readonly canvas: HTMLCanvasElement) {
     let block = false;
@@ -31,28 +31,10 @@ export class Game {
         this.curLevel = new Level(this.canvas, 1);
         this.loop();
       break;
-      case 2:
-        this.curLevel.moveCamera(2)
+      default:
+        this.curLevel.moveCamera(level)
           .then(() => {
-            this.curLevel = new Level(this.canvas, 2);
-          });
-      break;
-      case 3:
-        this.curLevel.moveCamera(3)
-          .then(() => {
-            this.curLevel = new Level(this.canvas, 3);
-          });
-      break;
-      case 4:
-        this.curLevel.moveCamera(4)
-          .then(() => {
-            this.curLevel = new Level(this.canvas, 4);
-          });
-      break;
-      case 5:
-        this.curLevel.moveCamera(5)
-          .then(() => {
-            this.curLevel = new Level(this.canvas, 5);
+            this.curLevel = new Level(this.canvas, level);
           });
       break;
     }  

@@ -2,31 +2,27 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 const isProduction = typeof process.env.NODE_ENV !== 'undefined' && process.env.NODE_ENV === 'production';
 const mode = isProduction ? 'production' : 'development';
 const devtool = isProduction ? false : 'inline-source-map';
-const optimization = isProduction && {
-    minimizer: [
-        new UglifyJsPlugin()
-    ]
-} || {};
 
 module.exports = {
-    entry: './src/main.ts',
+    entry: './src/main.js',
     target: 'web',
     mode,
     module: {
         rules: [{
-            test: /\.tsx?$/,
-            use: 'ts-loader',
-            exclude: /node_modules/
+            test: /\.worker.js$/,
+            use: [
+                { loader: require.resolve('worker-loader') }
+            ],
         }]
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.js']
     },
     devtool,
     devServer: {
@@ -47,9 +43,14 @@ module.exports = {
             'process.env': {
               NODE_ENV: JSON.stringify('production')
             },
+        }),
+        new TerserPlugin({
+            parallel: true,
+            terserOptions: {
+              ecma: 6,
+            },
         })
     ],
-    optimization,
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
