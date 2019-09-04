@@ -31,6 +31,7 @@ export class Char {
   setLevel(level: number) {
     this.img.src = this.base64 + this.imgs[level];
     this.pos.y = this.basePos.y + this.offset[level];
+    this.bar.setLevel(level);
   }
 
   move(direction: string) {

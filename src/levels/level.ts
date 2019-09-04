@@ -14,7 +14,6 @@ export class Level {
   constructor(public canvas: HTMLCanvasElement, public level: number) {
     this.ctx = canvas.getContext('2d');
     this.char = new Char(this.ctx);
-    console.log(level);
     this.target = new Target(this.ctx, {x: 190, y: 368});
     this.target.setLevel(level);
     this.char.setLevel(level);
@@ -28,29 +27,34 @@ export class Level {
       this.char.move('left');
     } else if (identifier === 'right') {
       this.phrase = Phrases.getRandom();
-      this.drawText = 300;
+      this.drawText = 200;
     }
   }
 
   action() {
     if (!this.interval) {
       this.char.bar.stop();
-      this.interval = setInterval(() => {
-        this.char.move('left');
-        if (this.char.pos.x < this.target.pos.x + 110) {
-          clearInterval(this.interval);
-          this.target.pos.x -= 360;
-          this.nextLevel(this.level+1);
-        }
-      }, 100);
+      if (this.char.bar.getStep()) {
+        this.interval = setInterval(() => {
+          this.char.move('left');
+          if (this.char.pos.x < this.target.pos.x + 110) {
+            clearInterval(this.interval);
+            this.target.pos.x -= 360;
+            this.nextLevel(this.level+1);
+          }
+        }, 90);
+      } else {
+        this.phrase = Phrases.getRandom();
+        this.drawText = 200;
+        this.target.stop();
+      }
     }
   }
 
   draw() {
     this.ctx.save();
-    this.drawBackground('#64b5f6');
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.drawMessageLoop();
-
     this.char.draw();
     this.target.draw();
     this.ctx.restore();
@@ -62,6 +66,10 @@ export class Level {
         this.ctx.fillStyle = '#000000';
       } else {
         this.ctx.fillStyle = '#64b5f6';
+        if (this.drawText === 0) {
+          this.char.bar.start();
+          this.target.start();
+        }
       }
       this.ctx.font = this.textFont;
       this.ctx.fillText('Don\'t regret!', 90, 178);
@@ -69,22 +77,6 @@ export class Level {
         this.ctx.fillText(text, 90, 200 + (index * 22));
       });
     }
-  }
-
-  protected drawBackground(fillStyle: string) {
-    this.ctx.fillStyle = fillStyle;
-    this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.fill();
-    this.ctx.fillStyle = '#ebcb68';
-    this.ctx.fillRect(0, 440, this.canvas.width, this.canvas.height);
-    this.ctx.fillStyle = '#e9d8af';
-    this.ctx.fillRect(0, 450, this.canvas.width, this.canvas.height);
-    this.ctx.fillStyle = '#c9b08e';
-    this.ctx.fillRect(0, 480, this.canvas.width, this.canvas.height);
-    this.ctx.fillStyle = '#e9d8af';
-    this.ctx.fillRect(0, 510, this.canvas.width, this.canvas.height);
-    this.ctx.fillStyle = '#ebcb68';
-    this.ctx.fillRect(0, 550, this.canvas.width, this.canvas.height);
   }
 
   public moveCamera(level: number) {

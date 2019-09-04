@@ -2,7 +2,6 @@ import { Level } from '../levels/Level';
 
 export class Game {
   private curLevel: Level;
-  private ticker: number = 3;
 
   constructor(private readonly canvas: HTMLCanvasElement) {
     let block = false;
@@ -59,11 +58,7 @@ export class Game {
   }
 
   loop() {
-    if (this.ticker > 4) {
-      this.curLevel.draw();
-      this.ticker = 0;
-    }
+    this.curLevel.draw();
     window.requestAnimationFrame(() => this.loop());
-    this.ticker++;
   }
 }
