@@ -3,10 +3,10 @@ import { XYPosition } from "./xyposition";
 export class Bar {
   private color: string = '#a47655';
   private animationStep: number = 0;
-  private turn: number = 1;
+  public turn: number = 1;
   public level: number = 1;
 
-  constructor(private ctx: CanvasRenderingContext2D, public pos: XYPosition = {x: 650, y: 284}) {
+  constructor(private ctx: CanvasRenderingContext2D, public pos: XYPosition = {x: 608, y: 284}) {
   }
 
   move(amount: number) {

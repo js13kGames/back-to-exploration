@@ -54,6 +54,12 @@ export class Game {
             this.curLevel = new Level(this.canvas, 5);
           });
       break;
+      case 6:
+          this.curLevel.moveCamera(6)
+            .then(() => {
+              this.curLevel = new Level(this.canvas, 6);
+            });
+      break;
     }  
   }
 

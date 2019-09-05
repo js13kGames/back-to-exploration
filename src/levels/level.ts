@@ -32,7 +32,7 @@ export class Level {
   }
 
   action() {
-    if (!this.interval) {
+    if (this.char.bar.turn !== 0) {
       this.char.bar.stop();
       if (this.char.bar.getStep()) {
         this.interval = setInterval(() => {
@@ -80,13 +80,29 @@ export class Level {
   }
 
   public moveCamera(level: number) {
-    return new Promise((res) => {
-       var camMove = setInterval(() => {
-        this.char.pos.x+=2;
-        this.char.bar.pos.x+=2;
-        this.target.setLevel(level);
-        this.target.pos.x+=2;
-        if (this.char.pos.x > 660) {
+    return new Promise((res: any) => {
+      var camMove = setInterval(() => {
+        if (level === 6) {
+          requestAnimationFrame(() => {
+            this.ctx.font = this.textFont;
+            this.ctx.fillText('We’ll do whatever just to stay alive.', 90, 200);
+            setTimeout(() => {
+              requestAnimationFrame(() => {
+                const background = <HTMLCanvasElement>document.getElementById('background');
+                background.setAttribute('style', 'position: absolute; top: 0; left: 0;z-index: 9;');
+                const ctx = background.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, 800, 600);
+              })
+            }, 2000);
+          });
+        } else {
+          this.char.pos.x+=2;
+          this.char.bar.pos.x+=2;
+          this.target.setLevel(level);
+          this.target.pos.x+=2;
+        }
+        if (this.char.pos.x > 610) {
           clearInterval(camMove);
           res();
         }
