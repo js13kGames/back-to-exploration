@@ -1,4 +1,4 @@
-import { Level } from '../levels/Level';
+import { Level } from '../level';
 
 export class Game {
   private curLevel: Level;

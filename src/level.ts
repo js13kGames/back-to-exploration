@@ -1,6 +1,6 @@
-import { Target } from "../objects/target";
-import { Char } from "../objects/char";
-import { Phrases } from "../objects/phrases";
+import { Target } from "./objects/target";
+import { Char } from "./objects/char";
+import { Phrases } from "./objects/phrases";
 
 export class Level {
   protected readonly ctx: CanvasRenderingContext2D;
@@ -21,7 +21,6 @@ export class Level {
 
   control(identifier: string) {
     if (identifier === 'space') {
-      //this.target.setLevel(5);
       this.action();
     } else if (identifier === 'left') {
       this.char.move('left');
@@ -87,14 +86,8 @@ export class Level {
             this.ctx.font = this.textFont;
             this.ctx.fillText('We’ll do whatever just to stay alive.', 90, 200);
             setTimeout(() => {
-              requestAnimationFrame(() => {
-                const background = <HTMLCanvasElement>document.getElementById('background');
-                background.setAttribute('style', 'position: absolute; top: 0; left: 0;z-index: 9;');
-                const ctx = background.getContext('2d');
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(0, 0, 800, 600);
-              })
-            }, 2000);
+              location.reload();
+            }, 3000);
           });
         } else {
           this.char.pos.x+=2;

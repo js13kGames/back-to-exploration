@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 
@@ -36,12 +35,6 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             template: 'src/index.html'
-        }),
-        new CopyWebpackPlugin([{
-            from: 'src/style.css',
-            to: path.resolve(__dirname, 'dist')
-        }], {
-            debug: 'info'
         }),
         new webpack.DefinePlugin({
             'process.env': {

@@ -27,7 +27,6 @@ export class Phrases {
     'Natural Selection almost inevitably causes much Extinction of the \nless improved forms of life and induces what I have called Divergence of Character.',
     'Ignorance more frequently begets confidence than does knowledge.',
     'Truth is born into this world only with pangs and tribulations, \nand every fresh truth is received unwillingly.',
-    'It is indisputably the mediocre, if not the low, both as regards morality \nand intelligence, who succeed in life and multiply the fastest.',
     'Weak people revenge. Strong people forgive. Intelligent people ignore.',
     'Be kind to people who are different from you.',
     'You can\'t use an old map to explore a new world.'
