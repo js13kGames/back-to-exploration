@@ -33,6 +33,6 @@ export class Phrases {
   ];
 
   static getRandom() {
-    return this.quote[Math.round(Math.random() * 30) + 1];
+    return this.quote[Math.round(Math.random() * 30)];
   }  
 }
